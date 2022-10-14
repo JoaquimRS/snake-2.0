@@ -1,0 +1,124 @@
+/* PLAYER GAME */
+
+.player {
+    position: relative;
+    top: 250px;
+    left: 70px;
+    font-size: 5em;
+}
+.players{
+    position: relative;
+    top: -85px;
+    left: 70px;
+    font-size: 5em;
+}
+.dp_img1 {
+    right: 20px;
+    top: 50px;
+    width: 340px;
+}
+.dp_img2 {
+    left:80px;
+    top: -140px;
+    width: 340px;
+}
+
+.play_player {
+    display: none;
+    position: fixed;
+    top: 30px;
+    width: 50px;
+    right: 49%;
+    cursor: pointer;
+}
+
+.pause_player {
+    position: fixed;
+    top: 30px;
+    width: 50px;
+    right: 49%;
+    cursor: pointer;
+}
+
+.play_player_1 {
+    display: none;
+    position: fixed;
+    top: 30px;
+    width: 50px;
+    right: 30%;
+    cursor: pointer;
+}
+
+.pause_player_1 {
+    position: fixed;
+    top: 30px;
+    width: 50px;
+    right: 30%;
+    cursor: pointer;
+}
+
+.play_player_2 {
+    display: none;
+    position: fixed;
+    top: 30px;
+    width: 50px;
+    right: 67%;
+    cursor: pointer;
+}
+
+.pause_player_2 {
+    position: fixed;
+    top: 30px;
+    width: 50px;
+    right: 67%;
+    cursor: pointer;
+}
+.score-container_player {
+    position: fixed;
+    top: 0;
+    font-size: 2.5em;
+    right: 60%;
+}
+.lvl-container_player {
+    position: fixed;
+    top: 0;
+    font-size: 2.5em;
+    right: 32%;
+}
+
+.score-container_player_2 {
+    position: fixed;
+    top: 0;
+    font-size: 2.5em;
+    right: 39%;
+}
+.lvl-container_player_2 {
+    position: fixed;
+    top: 0;
+    font-size: 2.5em;
+    right: 19%;
+}
+
+.score-container_player_1 {
+    position: fixed;
+    top: 0;
+    font-size: 2.5em;
+    right: 75%;
+}
+.lvl-container_player_1 {
+    position: fixed;
+    top: 0;
+    font-size: 2.5em;
+    right: 55%;
+}
+
+canvas {  
+    border: 5px solid #FC766AFF;
+    background-color: rgba(128, 167, 209, 0.705);  
+    border-radius: 1%;
+    margin-top: 90px;
+    margin-left: 5%;
+    margin-right: 5%;
+
+    
+}  

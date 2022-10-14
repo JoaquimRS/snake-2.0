@@ -1,0 +1,82 @@
+/* PLAYER MENU */
+.config-menu {
+    margin-top: 20px;
+    background-color: #e6e6e6;
+    width: 80%;
+    height: 500px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+}
+
+.container-menu {
+    width: 80%;
+    height: 100%;
+    /* background-color: red; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    
+}
+
+.container-menu * {
+    align-self: center;
+}
+
+.name-input {
+    height:30px;
+    font-size: 2em;
+    width: 100%;
+    background-color: transparent;
+    border-style: none;
+}
+
+.name-input:focus {
+    border-style: none;
+    outline: none;
+}
+
+.color-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.color-label {
+    font-size: 2em;
+    margin-right: 20px;
+    color: #6a6a6a;
+}
+
+.body-color-input {
+    display: none;
+}
+
+.body-color-span {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    display: inline-block;
+}
+
+
+input[type="color"] {
+	-webkit-appearance: none;
+	border: none;
+    
+	width: 50px;
+	height: 50px;
+}
+
+input[type="color"]:hover {
+    border-style: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}

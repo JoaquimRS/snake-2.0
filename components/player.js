@@ -1,5 +1,6 @@
 class Player {
-    constructor(color,ctx) {
+    constructor(name,color,ctx,bodyColor) {
+        this.name = name
         this.width = 20;
         this.height = 20;
         this.x = 0;
@@ -11,6 +12,7 @@ class Player {
         this.ctx = ctx
         this.direction = "RIGHT"
         this.bodies = []
+        this.bodyColor = bodyColor
         
         
         

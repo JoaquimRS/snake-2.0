@@ -3,21 +3,89 @@ let player
 let food
 let refreshGame
 
+function configPlayer() {
+    let config = {name: "",color: "",lvl: "",bodyColor: ""}
+    let configMenu = document.createElement("div")
+    let title = document.createElement('h1');
+    let container = document.createElement('div');
+    let name = document.createElement('input');
+    let colorContainer = document.createElement('div');
+    let colorLabel = document.createElement('label');
+    let color = document.createElement('input');
+    let bodyColorContainer = document.createElement('div');
+    let bodyColorLabel = document.createElement('label');
+    let bodyColorSpan = document.createElement('span')
+    let bodyColor = document.createElement('input');
+
+
+    configMenu.className = "config-menu"
+    title.appendChild(document.createTextNode("Player Configuration"))
+    container.className = "container-menu"
+    name.className = "name-input"
+    name.type = "text"
+    name.placeholder = "Name"
+    name.maxLength = "16"
+    colorContainer.className = "color-container"
+    colorLabel.appendChild(document.createTextNode("Color"))
+    colorLabel.htmlFor = "color-input"
+    colorLabel.className = "color-label"
+    color.id = "color-input"
+    color.className = "color-input"
+    color.type = "color"
+    color.value = "#ff0000"
+    
+    bodyColorContainer.className = "color-container"
+    bodyColorLabel.appendChild(document.createTextNode("Boby Color"))
+    bodyColorLabel.htmlFor = "color-input"
+    bodyColorLabel.className = "color-label"
+    bodyColorSpan.className = "body-color-span"
+    bodyColor.id = "color-input"
+    bodyColor.className = "body-color-input"
+    bodyColor.type = "color"
+    bodyColor.value = "#ff0000"
+
+    
+    document.body.insertBefore(configMenu, document.body.childNodes[0]);
+    configMenu.appendChild(title)
+    configMenu.appendChild(container)
+    container.appendChild(name)
+    container.appendChild(colorContainer)
+    colorContainer.appendChild(colorLabel)
+    colorContainer.appendChild(color)
+    container.appendChild(bodyColorContainer)
+    bodyColorContainer.appendChild(bodyColorLabel)
+    bodyColorContainer.appendChild(bodyColorSpan)
+    bodyColorContainer.appendChild(bodyColor)
+
+    bodyColorSpan.addEventListener("click",()=>{
+        bodyColor.click()        
+    })
+    
+    bodyColor.addEventListener("change",()=>{
+        bodyColorSpan.style.backgroundColor = bodyColor.value
+    })
+
+
+}
+
+
 
 function singlePlayer() {
-    getKeyPress()
-    
-    game = new GameArea("player")
-    game.start();
+    configPlayer() 
 
-    player = new Player("red",game.context)
-    player.spawn()
+    // getKeyPress()
     
-    food = new Food(game.context)
-    
-    PlayPause(lvls)
+    // game = new GameArea("player")
+    // game.start();
 
-    refresh(lvls)   
+    // player = new Player("red",game.context)
+    // player.spawn()
+    
+    // food = new Food(game.context)
+    
+    // PlayPause(lvls)
+
+    // refresh(lvls)   
 }
 
 function PlayPause(lvls) {
