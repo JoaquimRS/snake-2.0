@@ -65,6 +65,6 @@ function menu() {
 }
 
 function startGame() {
-    // menu()
-    singlePlayer()
+    menu()
+    // singlePlayer()
 }

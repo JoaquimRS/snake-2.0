@@ -8,3 +8,15 @@ body {
 input {
     font-family: 'Bangers', cursive;
 }
+
+.user {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 75px;
+}
+
+.user:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}

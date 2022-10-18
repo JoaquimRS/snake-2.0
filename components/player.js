@@ -1,5 +1,5 @@
 class Player {
-    constructor(name,color,ctx,bodyColor) {
+    constructor(name,color,bodyColor,ctx) {
         this.name = name
         this.width = 20;
         this.height = 20;
@@ -48,7 +48,7 @@ class Player {
     }
 
     addBody(name) {
-        let body = new Body(this.color,this.ctx,name,this.l_x,this.l_y)
+        let body = new Body(this.bodyColor,this.ctx,name,this.l_x,this.l_y)
         this.bodies.push(body)
     }
     die() {

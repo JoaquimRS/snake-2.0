@@ -7,7 +7,11 @@ let food_2
 let refreshGame_1
 let refreshGame_2
 
-function dualPlayers() {
+async function dualPlayers() {
+    
+    const config_p2 = await configPlayer("1")
+    const config_p1 = await configPlayer("2")
+    
     getDualKeyPress(lvls)
     
     game_1 = new GameArea("player_2")
@@ -15,9 +19,9 @@ function dualPlayers() {
     game_1.start()
     game_2.start()
 
-    player_1 = new Player("blue",game_1.context)
+    player_1 = new Player(config_p1.name,config_p1.color,config_p1.bodyColor,game_1.context)
     player_1.spawn()
-    player_2 = new Player("red",game_2.context)
+    player_2 = new Player(config_p2.name,config_p2.color,config_p2.bodyColor,game_2.context)
     player_2.spawn()
 
     food_1 = new Food(game_1.context)
