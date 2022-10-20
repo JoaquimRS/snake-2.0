@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnakeJS 2.0</title>
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    
+    <!-- Bangers Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet"> 
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/auth.css">
+
+    <!-- JS -->
+    <script src="./auth/login_register.js"></script>
+</head>
+<body onload="loadAuth()">
+    <main>
+        <div class="auth" id="login">
+            <h1 class="login-color">LOGIN</h1>
+            <div class="auth-form">
+                <form action="">
+                    <label for="log_user">User</label>
+                    <input type="text" id="log_user">
+                    <label for="log_password">Password</label>
+                    <input type="password" id="log_password">
+                    
+                    
+                </form>
+                <button id="login_login" class="login-color">LogIn</button>
+                <button id="login_register" class="register-color">Register</button>
+            </div>
+        </div>
+        <div class="auth" id="register">
+            <h1 class="register-color">REGISTER</h1>
+            <div class="auth-form">
+                <form action="">
+                    <label for="reg_user">User</label>
+                    <input type="text" id="reg_user">
+                    <label for="reg_password">Password</label>
+                    <input type="password" id="reg_password">
+                    <label for="reg_re_password">Repeat-Password</label>
+                    <input type="password" id="reg_re_password">
+                </form>
+                <button id="register_register" class="register-color">Register</button>
+                <button id="register_login" class="login-color">LogIn</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

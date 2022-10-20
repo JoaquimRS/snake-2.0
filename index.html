@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnakeJS</title>
+    <title>SnakeJS 2.0</title>
     <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
 
     <!-- CSS -->
@@ -29,14 +29,16 @@
     
     <!-- Config -->
     <script src="config/config_player.js"></script>
-    <script src="config/single_player.js"></script>
-    <script src="config/dual_player.js"></script>
-    <script src="config/battle.js"></script>
     <script src="config/levels.js"></script>
     <script src="config/directions.js"></script>
+
+    <!-- Game -->
+    <script src="game/single_player.js"></script>
+    <script src="game/dual_player.js"></script>
+
 </head>
 <body onload="startGame()">  
-    <img src="./img/user.png" class="user">
+    <img src="./img/user.png" class="user" id="user_image">
     <div class="modal" id="modal">
 
     </div>

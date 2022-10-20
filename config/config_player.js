@@ -1,7 +1,7 @@
 function configPlayer(player = "") {
     let config = {name: "",color: "",lvl: "",bodyColor: ""}
     return new Promise(resolve => {
-
+        
         let configMenu = document.createElement("div")
         let title = document.createElement('h1');
         let container = document.createElement('div');
@@ -27,6 +27,15 @@ function configPlayer(player = "") {
         container.className = "container-menu"
         name.className = "name-input"
         name.type = "text"
+        try {
+            let infoUser = JSON.parse(atob(localStorage.getItem("token")))
+            if (infoUser) {
+                name.value = infoUser.user
+                name.setAttribute("readonly", "readonly")
+            }    
+        } catch (error) {
+            
+        }
         name.placeholder = "Name"
         name.maxLength = "16"
         colorContainer.className = "color-container"

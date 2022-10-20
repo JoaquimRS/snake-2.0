@@ -64,7 +64,19 @@ function menu() {
 
 }
 
+function userExist(userInfo) {
+    let userImage = document.getElementById('user_image');
+    
+    userImage.src = "img/users/"+userInfo.img
+}
+
 function startGame() {
     menu()
-    // singlePlayer()
+    if (localStorage.getItem("token")) {
+        userExist(JSON.parse(atob(localStorage.getItem("token"))))    
+    } else {
+        document.getElementById("user_image").addEventListener("click",() => {
+            window.location.replace(window.location.origin + "/auth.html")
+        })
+    }
 }
