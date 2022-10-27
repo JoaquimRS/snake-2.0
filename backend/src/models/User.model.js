@@ -57,7 +57,16 @@ UserSchema.methods.toJSONFor = function () {
     return {
         uuid: this.uuid,
         user: this.user,
-        img: this.img
+        img: this.img,
+        score: this.score
+    }
+}
+
+UserSchema.methods.toScore = function () {
+    return {
+        user: this.user,
+        img: this.img,
+        score: this.score
     }
 }
 

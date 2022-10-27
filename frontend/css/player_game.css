@@ -122,3 +122,45 @@ canvas {
 
     
 }  
+
+.ranking-container {
+    position: fixed;
+    left: 10%;
+    width: 250px;
+    height: 250px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius: 20px;
+}
+
+.ranking-container ul {
+    /* background-color: red; */
+    height: 80%;
+    width: 75%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 1.5rem;
+}
+
+.ranking-container ul li::first-letter {
+    font-size: 2.5rem;
+}
+
+.ranking-container ul li {
+    display: flex;
+    
+    justify-content: space-around;
+}
+
+#first_ranking {
+    color: #D7BE69;
+}
+
+#second_ranking {
+    color: #C0C0C0;
+}
+
+#third_ranking {
+    color: rgb(184, 115, 51);
+}

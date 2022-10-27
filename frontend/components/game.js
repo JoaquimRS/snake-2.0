@@ -1,18 +1,23 @@
 class GameArea {
-    constructor(player, lvl = 0) {       
+    constructor(player) {       
         this.canvas = document.createElement("canvas");
         this.player = player
         this.canvas.width = 500;
         this.canvas.height = 500;
         this.score = 0
         this.context = this.canvas.getContext("2d");
-        this.lvl = lvl
+        this.lvl = 0
+        this.userInfo = localStorage.getItem("token") ? JSON.parse(atob(localStorage.getItem("token"))) : null
     }
 
-    start() {
+    async start() {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.createScore()
         this.showModal()
+        if (this.userInfo && this.player=="player") {
+            userResetScore(this.userInfo.uuid)
+            this.createRanking()
+        }
     }
 
     clear() {
@@ -57,6 +62,77 @@ class GameArea {
 
     }
 
+    createRanking() {
+        let rankingContainer = document.createElement('div');
+        let list = document.createElement('ul')
+        let first = document.createElement('li');
+        let second = document.createElement('li');
+        let third = document.createElement('li');
+        let self = document.createElement('li')
+        let value_first = document.createElement('label');
+        let value_second = document.createElement('label');
+        let value_third = document.createElement('label');
+        let value_self = document.createElement('label')
+
+        rankingContainer.className = "ranking-container"
+        list.className= "ranking-list"
+        first.appendChild(document.createTextNode("1 user"))
+        first.id = "first_ranking"
+        second.appendChild(document.createTextNode("2 user"))
+        second.id = "second_ranking"
+        third.appendChild(document.createTextNode("3 user"))
+        third.id = "third_ranking"
+        self.appendChild(document.createTextNode("X You"))
+        self.id = "self_ranking"
+        value_first.appendChild(document.createTextNode("X"))
+        value_first.id = "first_ranking_value"
+        value_second.appendChild(document.createTextNode("X"))
+        value_second.id = "second_ranking_value"
+        value_third.appendChild(document.createTextNode("X"))
+        value_third.id = "third_ranking_value"
+        value_self.appendChild(document.createTextNode("X"))
+        value_self.id = "self_ranking_value"
+        
+        
+        document.body.insertBefore(rankingContainer, this.canvas);
+        rankingContainer.appendChild(list)
+        list.append(first,second,third,self)
+        first.appendChild(value_first)
+        second.appendChild(value_second)
+        third.appendChild(value_third)
+        self.appendChild(value_self)
+        
+        this.updateRanking()
+    }
+
+    async updateRanking() {
+        let rankingUsers = await users(this.userInfo.uuid)
+        let first = document.getElementById("first_ranking")
+        let second = document.getElementById("second_ranking")
+        let third = document.getElementById("third_ranking")
+        let self = document.getElementById("self_ranking")
+        let value_first = document.getElementById("first_ranking_value")
+        let value_second = document.getElementById("second_ranking_value")
+        let value_third = document.getElementById("third_ranking_value")
+        let value_self = document.getElementById("self_ranking_value")
+
+        first.textContent = "1 "+rankingUsers[0].user
+        second.textContent = "2 "+rankingUsers[1].user
+        third.textContent = "3 "+rankingUsers[2].user
+        self.textContent = ""+rankingUsers[3].user
+        value_first.textContent = rankingUsers[0].score
+        value_second.textContent = rankingUsers[1].score
+        value_third.textContent = rankingUsers[2].score
+        value_self.textContent = rankingUsers[3].score
+
+        first.appendChild(value_first)
+        second.appendChild(value_second)
+        third.appendChild(value_third)
+        self.appendChild(value_self)
+
+
+    }
+
     async showModal() {
         const delay = ms => new Promise(res => setTimeout(res,ms))
         
@@ -91,7 +167,11 @@ class GameArea {
         modal.style.display = "none"
     }
 
-    addScore() {
+    async addScore() {
+        if (this.userInfo && this.player=="player") {
+            await userAddScore(this.userInfo.uuid)
+            this.updateRanking()
+        }
         this.score += 1
         switch (this.score) {
             case 5:

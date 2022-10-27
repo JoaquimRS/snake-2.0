@@ -72,12 +72,13 @@ function userExist(userInfo) {
 }
 
 function startGame() {
-    menu()
+    singlePlayer()
+    // menu()
     if (localStorage.getItem("token")) {
         userExist(JSON.parse(atob(localStorage.getItem("token"))))    
     } else {
         document.getElementById("user_image").addEventListener("click",() => {
-            window.location.replace(window.location.origin + "/auth.html")
+            window.location.replace(window.location.origin + "/frontend/auth.html")
         })
     }
 }
