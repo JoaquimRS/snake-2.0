@@ -27,7 +27,7 @@ exports.login = async (userInfo) => {
 exports.register = async (userInfo) => {
     try {
         const data = await User.create(userInfo)
-        return data
+        return data.toJSONFor()
     } catch (err) {
         return err
     }

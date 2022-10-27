@@ -67,7 +67,8 @@ function menu() {
 function userExist(userInfo) {
     let userImage = document.getElementById('user_image');
     
-    userImage.src = "img/users/"+userInfo.img
+    userImage.src = userInfo.img
+    // userImage.src = "img/users/"+userInfo.img
 }
 
 function startGame() {

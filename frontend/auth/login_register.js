@@ -8,6 +8,7 @@ function loadLogin() {
     let loginButton = document.getElementById("login_login")
     let user = document.getElementById("log_user")
     let password = document.getElementById("log_password")
+    let log_error = document.getElementById("log_error")
     
 
     loginButton.addEventListener("click",async () => {
@@ -16,7 +17,13 @@ function loadLogin() {
             password: btoa(password.value)
         }
         let userLogin = await login(userInfo)
-        console.log(userLogin);
+        
+        if (Object.keys(userLogin).length) {
+            localStorage.setItem("token",btoa(JSON.stringify(userLogin)))
+            window.location.replace(window.location.origin + "/frontend/index.html")   
+        } else {
+            log_error.textContent = "Usuario o contraseña incorrecto"
+        }
     })
 
 
@@ -45,7 +52,13 @@ function loadRegister() {
         if (userInfo.password == btoa(repassword.value)) {
             reg_error.textContent = ""
             let userRegister = await register(userInfo)
-            console.log(userRegister); 
+            if (!userRegister.errors) {
+                localStorage.setItem("token",btoa(JSON.stringify(userRegister)))
+                window.location.replace(window.location.origin + "/frontend/index.html")        
+            } else {
+                reg_error.textContent = "Usuario o contraseña incorrecto"
+            }
+
         } else {
             reg_error.textContent = "Contraseñas no coinciden"
         }

@@ -14,10 +14,15 @@ const UserSchema = mongoose.Schema({
     },
     password:{
         type:String,
-        required:true
+        required:true,
+        minLength:3
+        
     },
     img:{
         type:String,
+    },
+    score:{
+        type:Number
     }
 
 });
@@ -28,8 +33,9 @@ UserSchema.pre("validate",async function (next) {
         this.uuidGenerate()
     }
     if (!this.img) {
-        this.img = "https://avatars.dicebear.com/api/identicon/"+ this.user +".svg"
+        this.img = "https://avatars.dicebear.com/api/avataaars/"+ this.user +".svg"
     }
+    this.score = 0
     this.password = await this.hashPassword()
     next()
 })
