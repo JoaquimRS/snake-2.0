@@ -14,8 +14,14 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./css/auth.css">
 
+    <!-- SERVICES -->
+    <script src="./services/apiService.js"></script>
+    <script src="./services/authService.js"></script>
+    
     <!-- JS -->
     <script src="./auth/login_register.js"></script>
+
+
 </head>
 <body onload="loadAuth()">
     <main>
@@ -37,6 +43,7 @@
         <div class="auth" id="register">
             <h1 class="register-color">REGISTER</h1>
             <div class="auth-form">
+                <span class="error" id="reg_error"></span>
                 <form action="">
                     <label for="reg_user">User</label>
                     <input type="text" id="reg_user">

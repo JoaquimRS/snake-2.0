@@ -28,11 +28,14 @@ function configPlayer(player = "") {
         name.className = "name-input"
         name.type = "text"
         try {
-            let infoUser = JSON.parse(atob(localStorage.getItem("token")))
-            if (infoUser) {
-                name.value = infoUser.user
-                name.setAttribute("readonly", "readonly")
-            }    
+            if (!player) {
+                let infoUser = JSON.parse(atob(localStorage.getItem("token")))
+                if (infoUser) {
+                    name.value = infoUser.user
+                    name.setAttribute("readonly", "readonly")
+                    name.className = "name-input invalid"
+                } 
+            }
         } catch (error) {
             
         }
