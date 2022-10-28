@@ -120,9 +120,9 @@ class GameArea {
         second.textContent = "2 "+rankingUsers[1].user
         third.textContent = "3 "+rankingUsers[2].user
         self.textContent = ""+rankingUsers[3].user
-        value_first.textContent = rankingUsers[0].score
-        value_second.textContent = rankingUsers[1].score
-        value_third.textContent = rankingUsers[2].score
+        value_first.textContent = rankingUsers[0].maxscore
+        value_second.textContent = rankingUsers[1].maxscore
+        value_third.textContent = rankingUsers[2].maxscore
         value_self.textContent = rankingUsers[3].score
 
         first.appendChild(value_first)

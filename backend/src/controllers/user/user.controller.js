@@ -1,9 +1,10 @@
+const { Promise } = require("mongoose");
 const { User } = require("../../models/index")
 
 
 exports.findRanking = async () => {
     try {
-        const data = await User.find().sort([['score',-1]]).limit(3);
+        const data = await User.find().sort([['maxscore',-1]]).limit(3);
         return data.map(user => user.toScore());
     } catch (err) {
         return err;
@@ -22,6 +23,11 @@ exports.findOne = async (uuid) => {
 exports.addScore = async (uuid) => {
     try {
         const data = await User.findOneAndUpdate({uuid:uuid},{$inc:{score:1}})
+        
+        if ( data.score >= data.maxscore) {
+            data = await User.findOneAndUpdate({uuid:uuid},{$set:{maxscore:data.score+1}})
+            
+        }
         return data
     } catch (err) {
         return err

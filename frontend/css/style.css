@@ -16,7 +16,14 @@ input {
     width: 75px;
 }
 
-.user:hover {
+.user:hover, .logout:hover {
     transform: scale(1.2);
     cursor: pointer;
+}
+
+.logout {
+    position: absolute;
+    top: 20px;
+    right: 100px;
+    width: 50px;
 }

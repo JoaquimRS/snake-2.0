@@ -23,6 +23,9 @@ const UserSchema = mongoose.Schema({
     },
     score:{
         type:Number
+    },
+    maxscore:{
+        type:Number
     }
 
 });
@@ -36,6 +39,7 @@ UserSchema.pre("validate",async function (next) {
         this.img = "https://avatars.dicebear.com/api/avataaars/"+ this.user +".svg"
     }
     this.score = 0
+    this.maxscore = 0
     this.password = await this.hashPassword()
     next()
 })
@@ -58,7 +62,8 @@ UserSchema.methods.toJSONFor = function () {
         uuid: this.uuid,
         user: this.user,
         img: this.img,
-        score: this.score
+        score: this.score,
+        maxscore: this.maxscore
     }
 }
 
@@ -66,7 +71,8 @@ UserSchema.methods.toScore = function () {
     return {
         user: this.user,
         img: this.img,
-        score: this.score
+        score: this.score,
+        maxscore: this.maxscore
     }
 }
 

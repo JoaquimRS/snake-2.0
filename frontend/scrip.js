@@ -66,14 +66,25 @@ function menu() {
 
 function userExist(userInfo) {
     let userImage = document.getElementById('user_image');
-    
+    let logout = document.createElement("img")
+
     userImage.src = userInfo.img
-    // userImage.src = "img/users/"+userInfo.img
+    logout.src = "./img/logout.png"
+    logout.className = "logout"
+    document.body.insertBefore(logout, document.body.childNodes[0]);
+
+    userImage.addEventListener("click",() => {
+        window.location.replace(window.location.origin + "/frontend/ranking.html")
+    })
+
+    logout.addEventListener("click",()=> {
+        localStorage.removeItem("token")
+        window.location.reload()
+    })
 }
 
 function startGame() {
-    singlePlayer()
-    // menu()
+    menu()
     if (localStorage.getItem("token")) {
         userExist(JSON.parse(atob(localStorage.getItem("token"))))    
     } else {
@@ -81,4 +92,8 @@ function startGame() {
             window.location.replace(window.location.origin + "/frontend/auth.html")
         })
     }
+}
+
+function loadRanking() {
+    console.log("A");
 }

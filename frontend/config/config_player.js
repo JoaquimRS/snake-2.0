@@ -88,15 +88,14 @@ function configPlayer(player = "") {
         })
 
         playButton.addEventListener("click",()=>{
-            //aci
+            config = {
+                name: name.value,
+                color: color.value,
+                bodyColor: bodyColor.value
+            }
+            configMenu.remove()
+            resolve(config)
         })
-        config = {
-            name: name.value,
-            color: color.value,
-            bodyColor: bodyColor.value
-        }
-        configMenu.remove()
-        resolve(config)
     })
 
 
