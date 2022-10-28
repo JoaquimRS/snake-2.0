@@ -1,6 +1,15 @@
 const { Promise } = require("mongoose");
 const { User } = require("../../models/index")
 
+exports.findAll = async () => {
+    try {
+        const data = await User.find().sort([['maxscore',-1]]);
+        return data.map(user => user.toScore());
+    } catch (err) {
+        return err;
+    }
+  };
+
 
 exports.findRanking = async () => {
     try {

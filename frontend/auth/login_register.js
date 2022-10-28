@@ -19,8 +19,13 @@ function loadLogin() {
         let userLogin = await login(userInfo)
         
         if (Object.keys(userLogin).length) {
-            localStorage.setItem("token",btoa(JSON.stringify(userLogin)))
-            window.location.replace(window.location.origin + "/frontend/index.html")   
+            if(!userLogin.msg) {
+                localStorage.setItem("token",btoa(JSON.stringify(userLogin)))
+                window.location.replace(window.location.origin + "/frontend/index.html")   
+            } else {
+                log_error.textContent = "Usuario o contraseña incorrecto"
+            }
+
         } else {
             log_error.textContent = "Usuario o contraseña incorrecto"
         }
@@ -52,6 +57,7 @@ function loadRegister() {
         if (userInfo.password == btoa(repassword.value)) {
             reg_error.textContent = ""
             let userRegister = await register(userInfo)
+            console.log(userRegister);
             if (!userRegister.errors) {
                 localStorage.setItem("token",btoa(JSON.stringify(userRegister)))
                 window.location.replace(window.location.origin + "/frontend/index.html")        

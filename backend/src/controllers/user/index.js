@@ -1,5 +1,15 @@
 const userController = require("./user.controller")
 
+exports.getRankingUsers = async (req,res) => {
+    let users
+    try {
+        users = await userController.findAll()
+    } catch (error) {
+        users = error
+    }
+    res.json(users)
+} 
+
 exports.getUsers = async (req,res) => {
     let users
     try {

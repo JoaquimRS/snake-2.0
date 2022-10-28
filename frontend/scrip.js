@@ -94,6 +94,46 @@ function startGame() {
     }
 }
 
-function loadRanking() {
-    console.log("A");
+async function loadRanking() {
+    let back = document.getElementById("back")
+    let loading = document.getElementById("loading")
+    back.addEventListener("click",() => {
+        window.location.replace(window.location.origin + "/frontend/index.html")
+    })
+    setTimeout(async () => {
+        let userToken
+        if (localStorage.getItem("token")) {
+            userToken = (JSON.parse(atob(localStorage.getItem("token"))))    
+        }
+        let ranking_users = await usersRanking()
+        let ranking = document.getElementById("ranking")
+        ranking_users.forEach((userRanking,i) => {
+            let li = document.createElement("li")
+            let user = document.createElement("p")
+            let points = document.createElement("p")
+            user.textContent = (i+1)+" "+userRanking.user
+            points.textContent = userRanking.maxscore
+            switch (i) {
+                case 0:
+                    li.id = "first_ranking"
+                    break;
+                case 1:
+                    li.id = "second_ranking"
+                    break;
+                case 2:
+                    li.id = "third_ranking"
+                    break;
+            }
+
+            if (userRanking.user == userToken.user) {
+                li.className = "current-user"
+            }
+            
+
+            li.append(user,points)
+            ranking.appendChild(li)       
+        });
+        loading.remove()
+    }, 2000);
+    
 }

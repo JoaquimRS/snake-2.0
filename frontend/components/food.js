@@ -24,12 +24,12 @@ class Food {
     }
 
     getRandomX() {
-        var random = Math.floor(Math.random() * 500)
-        return random - (random % 20)
+        var random = Math.floor(Math.random() * 480)
+        return random+20 - (random % 20)
     }
     getRandomY() {
-        var random = Math.floor(Math.random() * 500)
-        return random - (random % 20)
+        var random = Math.floor(Math.random() * 480)
+        return random+20 - (random % 20)
     }
 
 }
