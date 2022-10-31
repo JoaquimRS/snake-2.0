@@ -1,4 +1,5 @@
 const userController = require("./user.controller")
+const copUserController = require("./copuser.controller")
 
 exports.getRankingUsers = async (req,res) => {
     let users
@@ -41,3 +42,35 @@ exports.resetScore = async (req,res) => {
     }
     res.json(user)
 } 
+
+exports.getCopUsers = async (req,res) => {
+    let users
+    try {
+        users = await copUserController.findAllCop()
+        let user = await copUserController.findOne(req.params.uuid)
+        users.push(user)
+    } catch (err) {
+        users = err
+    }
+    res.json(users)
+}
+
+exports.addCopScore = async (req,res) => {
+    let user
+    try {
+        user = await copUserController.addCopScore(req.params.uuid)
+    } catch (err) {
+        user = err
+    }
+    res.json(user)
+}
+
+exports.resetCopScore = async (req,res) => {
+    let user
+    try {
+        user = await copUserController.resetScore(req.params.uuid)
+    } catch (err) {
+        user = err
+    }
+    res.json(user)
+}

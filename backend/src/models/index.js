@@ -1,5 +1,6 @@
 const models = {
-    User: require('./User.model')
+    User: require('./User.model'),
+    CopUser: require('./CopUser.model')
     
 }
 

@@ -1,5 +1,5 @@
 class GameArea {
-    constructor(player) {       
+    constructor(player,cop_player) {       
         this.canvas = document.createElement("canvas");
         this.player = player
         this.canvas.width = 500;
@@ -8,6 +8,7 @@ class GameArea {
         this.context = this.canvas.getContext("2d");
         this.lvl = 0
         this.userInfo = localStorage.getItem("token") ? JSON.parse(atob(localStorage.getItem("token"))) : null
+        this.cop_player = cop_player
     }
 
     async start() {
@@ -15,7 +16,8 @@ class GameArea {
         this.createScore()
         this.showModal()
         if (this.userInfo && this.player=="player") {
-            userResetScore(this.userInfo.uuid)
+            
+            this.cop_player ? cop_userResetScore(this.userInfo.user + "-" + this.cop_player) : userResetScore(this.userInfo.uuid)
             this.createRanking()
         }
     }
@@ -102,7 +104,7 @@ class GameArea {
         third.appendChild(value_third)
         self.appendChild(value_self)
         
-        this.updateRanking()
+        this.cop_player ? this.updateCopRanking() : this.updateRanking()
     }
 
     async updateRanking() {
@@ -129,8 +131,32 @@ class GameArea {
         second.appendChild(value_second)
         third.appendChild(value_third)
         self.appendChild(value_self)
+    }
 
+    async updateCopRanking() {
+        let rankingCopUsers = await cop_users(this.userInfo.user + "-" + this.cop_player)
+        let first = document.getElementById("first_ranking")
+        let second = document.getElementById("second_ranking")
+        let third = document.getElementById("third_ranking")
+        let self = document.getElementById("self_ranking")
+        let value_first = document.getElementById("first_ranking_value")
+        let value_second = document.getElementById("second_ranking_value")
+        let value_third = document.getElementById("third_ranking_value")
+        let value_self = document.getElementById("self_ranking_value")
 
+        first.textContent = "1 "+rankingCopUsers[0].user
+        second.textContent = "2 "+rankingCopUsers[1].user
+        third.textContent = "3 "+rankingCopUsers[2].user
+        self.textContent = ""+rankingCopUsers[3].user
+        value_first.textContent = rankingCopUsers[0].maxscore
+        value_second.textContent = rankingCopUsers[1].maxscore
+        value_third.textContent = rankingCopUsers[2].maxscore
+        value_self.textContent = rankingCopUsers[3].score
+
+        first.appendChild(value_first)
+        second.appendChild(value_second)
+        third.appendChild(value_third)
+        self.appendChild(value_self)
     }
 
     async showModal() {
@@ -163,36 +189,17 @@ class GameArea {
         modalContent.appendChild(img_1)
         
 
-        await delay(4000)
+        await delay(2000)
         modal.style.display = "none"
     }
 
     async addScore() {
         if (this.userInfo && this.player=="player") {
-            await userAddScore(this.userInfo.uuid)
-            this.updateRanking()
+            this.cop_player ? (await cop_userAddScore(this.userInfo.user + "-" + this.cop_player),this.updateCopRanking()) : (await userAddScore(this.userInfo.uuid),this.updateRanking())
         }
+
         this.score += 1
-        switch (this.score) {
-            case 5:
-                this.lvl = 1
-                break;
-            case 10:
-                this.lvl = 2
-                break;
-            case 15:
-                this.lvl = 3
-                break;
-            case 20:
-                this.lvl = 4
-                break;
-            case 25:
-                this.lvl = 5
-                break;
-            case 30:
-                this.lvl = 6
-                break;
-        }
+        this.lvl = Math.ceil(this.score / 5)-1
 
         document.getElementById("score_"+this.player).innerHTML = "Score: "+this.score
         document.getElementById("lvl_"+this.player).innerHTML = "LVL: "+(this.lvl+1)

@@ -1,4 +1,4 @@
-function configPlayer(player = "") {
+function configPlayer(player = "",mode = "") {
     let config = {name: "",color: "",lvl: "",bodyColor: ""}
     return new Promise(resolve => {
         
@@ -27,6 +27,7 @@ function configPlayer(player = "") {
         container.className = "container-menu"
         name.className = "name-input"
         name.type = "text"
+        
         try {
             if (!player) {
                 let infoUser = JSON.parse(atob(localStorage.getItem("token")))
@@ -35,6 +36,16 @@ function configPlayer(player = "") {
                     name.setAttribute("readonly", "readonly")
                     name.className = "name-input invalid"
                 } 
+            }
+            if (mode == "COOPERATIVE_PLAYER") {
+                if (player == "1" && localStorage.getItem("token")) {
+                    let infoUser = JSON.parse(atob(localStorage.getItem("token")))
+                    if (infoUser) {
+                        name.value = infoUser.user
+                        name.setAttribute("readonly", "readonly")
+                        name.className = "name-input invalid"
+                    }
+                }
             }
         } catch (error) {
             
@@ -48,7 +59,7 @@ function configPlayer(player = "") {
         color.id = "color-input"
         color.className = "color-input"
         color.type = "color"
-        color.value = "#ff0000"
+        player == "2" ? color.value = "#0000ff" : color.value = "#ff0000"
         playButton.appendChild(document.createTextNode("PLAY"))
         
         bodyColorContainer.className = "color-container"
@@ -59,7 +70,8 @@ function configPlayer(player = "") {
         bodyColor.id = "color-input"
         bodyColor.className = "body-color-input"
         bodyColor.type = "color"
-        bodyColor.value = "#ff0000"
+        player == "2" ? bodyColor.value = "#0000ff" : bodyColor.value = "#ff0000"
+        bodyColorSpan.style.backgroundColor = bodyColor.value
         playDiv.className = "play-div"
 
 

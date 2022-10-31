@@ -22,6 +22,14 @@ class Player {
         this.ctx.fillRect(this.x,this.y,this.width, this.height)
     }
 
+    spawnSecond() {
+        this.x = 480;
+        this.y = 480;
+        this.direction = "LEFT"
+        this.ctx.fillStyle = this.color;
+        this.ctx.fillRect(this.x,this.y,this.width, this.height)
+    }
+
     move(vel) {
         this.l_x = this.x
         this.l_y = this.y
@@ -65,6 +73,15 @@ class Player {
         this.l_y = 0
         this.dead = false
         this.direction = "RIGHT"
+        this.bodies = []
+    }
+    restartSecond() {
+        this.x = 480;
+        this.y = 480;
+        this.l_x = 0
+        this.l_y = 0
+        this.dead = false
+        this.direction = "LEFT"
         this.bodies = []
     }
 }

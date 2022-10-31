@@ -14,7 +14,7 @@
     padding: 3ch;
     display: flex;
     border-radius: 2ch;
-    width: 800px;
+    /* width: 800px; */
     height: 400px;
 }
 
@@ -39,7 +39,7 @@
     top: 210px;
     width: 380px;
 }
-.img {
+.img,.dp-text {
     pointer-events: none;
     position: relative;
     transform: translateY(20px) scale(1.15);
@@ -52,5 +52,35 @@
 .img1 {
     left: 22px;
     top: 164px;
+    width: 340px;
+}
+
+.dp-text {
+    position: absolute;
+    font-size: 5rem;
+    top: -30px;
+    left: 170px;
+    
+}
+
+.dp_img1 {
+    right: 20px;
+    top: 20px;
+    width: 340px;
+}
+.dp_img2 {
+    left:80px;
+    top: -80px;
+    width: 340px;
+}
+
+.cop_dp_img1 {
+    right: 20px;
+    top: 50px;
+    width: 340px;
+}
+.cop_dp_img2 {
+    left:80px;
+    top: -140px;
     width: 340px;
 }

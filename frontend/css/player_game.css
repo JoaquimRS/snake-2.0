@@ -12,16 +12,7 @@
     left: 70px;
     font-size: 5em;
 }
-.dp_img1 {
-    right: 20px;
-    top: 50px;
-    width: 340px;
-}
-.dp_img2 {
-    left:80px;
-    top: -140px;
-    width: 340px;
-}
+
 
 .play_player {
     display: none;
