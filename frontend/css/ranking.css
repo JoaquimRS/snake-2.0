@@ -1,6 +1,7 @@
 body {
     display: flex;
     justify-content: center;
+    overflow: hidden;
 }
 
 .back {
@@ -50,15 +51,16 @@ p {
     border-radius: 20px;
 }
 
-#first_ranking {
-    color: #D7BE69;
+ul li:nth-child(2) {
+  color: #D7BE69;
 }
 
-#second_ranking {
-    color: #C0C0C0;
+ul li:nth-child(3) {
+  color: #C0C0C0;
+
 }
 
-#third_ranking {
+ul li:nth-child(4) {
     color: rgb(184, 115, 51);
 }
 
@@ -148,3 +150,15 @@ p {
       transform: rotate(360deg);
     }
   }
+
+.game-mode {
+  position: absolute;
+  height: 200px;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.game-mode:hover {
+  transform: scale(1.2);
+}

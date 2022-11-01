@@ -130,44 +130,66 @@ function startGame() {
 
 async function loadRanking() {
     let back = document.getElementById("back")
-    let loading = document.getElementById("loading")
+    let game_mode = document.getElementById("game_mode")
     back.addEventListener("click",() => {
         window.location.replace(window.location.origin + "/frontend/index.html")
     })
-    setTimeout(async () => {
-        let userToken
-        if (localStorage.getItem("token")) {
-            userToken = (JSON.parse(atob(localStorage.getItem("token"))))    
-        }
-        let ranking_users = await usersRanking()
-        let ranking = document.getElementById("ranking")
-        ranking_users.forEach((userRanking,i) => {
-            let li = document.createElement("li")
-            let user = document.createElement("p")
-            let points = document.createElement("p")
-            user.textContent = (i+1)+" "+userRanking.user
-            points.textContent = userRanking.maxscore
-            switch (i) {
-                case 0:
-                    li.id = "first_ranking"
-                    break;
-                case 1:
-                    li.id = "second_ranking"
-                    break;
-                case 2:
-                    li.id = "third_ranking"
-                    break;
-            }
-
-            if (userRanking.user == userToken.user) {
-                li.className = "current-user"
-            }
-            
-
-            li.append(user,points)
-            ranking.appendChild(li)       
-        });
-        loading.remove()
-    }, 2000);
+    game_mode.addEventListener("click",() =>{
+        game_mode.src = "./img/classic.png"
+        loadCopRanking()
+    })
+    let ranking_users = await usersRanking()
+    UpdateRanking(ranking_users)
     
+}
+
+async function loadCopRanking() {
+    let game_mode = document.getElementById("game_mode")
+    game_mode.addEventListener("click",() =>{
+        game_mode.src = "./img/cooperative.png"
+        loadRanking()
+    })
+    let ranking_users = await copUsersRanking()
+    UpdateRanking(ranking_users)
+}
+
+function UpdateRanking(ranking_users) {
+    let ranking = document.getElementById("ranking")
+    let userToken
+    if (localStorage.getItem("token")) {
+        userToken = (JSON.parse(atob(localStorage.getItem("token"))))    
+    }
+
+    while (ranking.firstChild) {
+        ranking.removeChild(ranking.lastChild);
+    }
+    let header = document.createElement("li")
+    let user = document.createElement("p")
+    let points = document.createElement("p")    
+
+    header.className = "header"
+    user.textContent = "USER"
+    points.textContent = "POINTS"
+
+    ranking.appendChild(header)
+    header.append(user,points)
+    
+    
+    ranking_users.forEach((userRanking,i) => {
+        let li = document.createElement("li")
+        let user = document.createElement("p")
+        let points = document.createElement("p")
+        user.textContent = (i+1)+" "+userRanking.user
+        points.textContent = userRanking.maxscore
+        if (userRanking.user == userToken.user) {
+            li.className = "current-user"
+        }
+        if ((userRanking.user).includes(userToken.user)) {
+            li.className = "current-user"
+        }
+        
+
+        li.append(user,points)
+        ranking.appendChild(li)       
+    });
 }

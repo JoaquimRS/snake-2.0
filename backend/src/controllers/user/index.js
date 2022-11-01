@@ -43,10 +43,20 @@ exports.resetScore = async (req,res) => {
     res.json(user)
 } 
 
-exports.getCopUsers = async (req,res) => {
+exports.getRankingCopUsers = async (req,res) => {
     let users
     try {
         users = await copUserController.findAllCop()
+    } catch (error) {
+        users = error
+    }
+    res.json(users)
+} 
+
+exports.getCopUsers = async (req,res) => {
+    let users
+    try {
+        users = await copUserController.findRanking()
         let user = await copUserController.findOne(req.params.uuid)
         users.push(user)
     } catch (err) {

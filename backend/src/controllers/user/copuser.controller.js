@@ -3,12 +3,22 @@ const { CopUser } = require("../../models/index")
 
 exports.findAllCop = async () =>{
     try {
-        const data = await CopUser.find().sort([['maxscore',-1]]).limit(3);
+        const data = await CopUser.find().sort([['maxscore',-1]]);
         return data.map(user => user.toScore());
     } catch (err) {
         return err;
     }
 }
+
+exports.findRanking = async () => {
+    try {
+        const data = await CopUser.find().sort([['maxscore',-1]]).limit(3);
+        return data.map(user => user.toScore());
+    } catch (err) {
+        return err;
+    }
+  };
+
 
 exports.findOne = async (uuid) => {
     try {
